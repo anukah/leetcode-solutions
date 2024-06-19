@@ -101,6 +101,8 @@ public static boolean isPalindrome(int x) {
 
 - Without converting it to a String
 
+we only need to check half of 
+
 ```public static boolean(int x){
 	if(x<0 || (x%10 = 0 && x!=0)){
 	return false;

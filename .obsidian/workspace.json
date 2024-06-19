@@ -69,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "a9acf0a478fb10d1",
@@ -148,6 +149,7 @@
   },
   "active": "4aaad5c98255cb0d",
   "lastOpenFiles": [
+    "src/RomantoInteger",
     "conflict-files-obsidian-git.md",
     "README.md"
   ]
