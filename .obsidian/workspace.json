@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "4aaad5c98255cb0d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -146,6 +159,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "e302650426f67b90",
-  "lastOpenFiles": []
+  "active": "4aaad5c98255cb0d",
+  "lastOpenFiles": [
+    "conflict-files-obsidian-git.md",
+    "README.md"
+  ]
 }
