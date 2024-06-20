@@ -275,7 +275,7 @@ If there is no common prefix, return an empty string `""`.
 
 - Using `StringBuilder` 
 	This is the brute force approach where we compare and contrast every `char` in each `string` in the array.
-	We use MAX_VALUE in Integer class to figure out the the length of the String with the minimum length.
+	We use `Integer.MAX_VALUE` in Integer class to figure out the the length of the String with the minimum length.
 ```
 public static String longestCommonPrefix(String[] strs) {  
 	if (strs == null || strs.length == 0) return "";  
@@ -354,3 +354,115 @@ An input string is valid if:
 
 - `1 <= s.length <= 104`
 - `s` consists of parentheses only `'()[]{}'`.
+
+## Solution
+
+- We use a `Stack`.
+Whenever the character at the index while iterating is a `'(', '{' or a '['` we push it into the stack. 
+While checking the top element we pop from the stack when the character is `')', '}' or ']'`.
+Be sure to check the emptiness of the array throughout.
+```
+public static boolean isValid(String s) {  
+	Stack<Character> stack = new Stack<>();  
+	for (int i = 0; i < s.length(); i++) {  
+		if (s.charAt(i) == '(' || s.charAt(i) == '[' || s.charAt(i) == '{') {  
+			stack.push(s.charAt(i));  
+		} else {  
+			if (stack.isEmpty()) {  
+				return false;  
+			}  
+		if ((s.charAt(i) == ')' && stack.peek() == '(') || (s.charAt(i) == ']' && stack.peek() == '[') || (s.charAt(i) == '}' && stack.peek() == '{')) {  
+			stack.pop();  
+			} else {  
+				return false;  
+			}  
+		}  
+	}  
+	return stack.isEmpty();  
+}
+```
+
+## 21. Merge Two Sorted Lists
+
+You are given the heads of two sorted linked lists `list1` and `list2`.
+
+Merge the two lists into one **sorted** list. The list should be made by splicing together the nodes of the first two lists.
+
+Return _the head of the merged linked list_.
+
+**Example 1:**
+
+![](https://assets.leetcode.com/uploads/2020/10/03/merge_ex1.jpg)
+
+**Input:** list1 = [1,2,4], list2 = [1,3,4]
+**Output:** [1,1,2,3,4,4]
+
+**Example 2:**
+
+**Input:** list1 = [], list2 = []
+**Output:** []
+
+**Example 3:**
+
+**Input:** list1 = [], list2 = [0]
+**Output:** [0]
+
+**Constraints:**
+
+- The number of nodes in both lists is in the range `[0, 50]`.
+- `-100 <= Node.val <= 100`
+- Both `list1` and `list2` are sorted in **non-decreasing** order.
+
+## Solution
+
+A bit confusing when looking at it first but looking at my main method would help to understand it more clearly.
+
+```
+public static void main(String[] args) {  
+	ListNode l1 = new ListNode(1, new ListNode(2, new ListNode(4)));  
+	ListNode l2 = new ListNode(1, new ListNode(3, new ListNode(4)));  
+	ListNode sol = mergeTwoLists(l1,l2);  
+  
+	while (sol != null) {  
+	System.out.print(sol.val + ", ");  
+	sol = sol.next;  
+	}  
+}
+```
+
+then our output would be,
+
+``` 
+1, 1, 2, 3, 4, 4, 
+```
+
+The method takes in two `ListNode` objects as parameters and returns a `ListNode` .
+We must make sure to look at the edge cases where a list might have elements remaining even though the other has finished merging.
+
+```
+public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {  
+	ListNode temp = new ListNode(0);  
+	ListNode current = temp;  
+  
+	while(list1!=null && list2!=null){  
+		if (list1.val < list2.val){  
+			current.next = list1;  
+			list1 = list1.next;  
+		} else {  
+			current.next = list2;  
+			list2 = list2.next;  
+		}  
+		current = current.next;  
+	}  
+	if (list1!=null){  
+		current.next = list1;  
+		list1 = list1.next;  
+	}  
+	if (list2!=null){  
+		current.next = list2;  
+		list2 = list2.next;  
+	}  
+	return temp.next;  
+}
+```
+
