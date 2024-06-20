@@ -275,7 +275,7 @@ If there is no common prefix, return an empty string `""`.
 
 - Using `StringBuilder` 
 	This is the brute force approach where we compare and contrast every `char` in each `string` in the array.
-	We use MAX_VALUE in Integer class to figure out the the length of the String with the minimum length.
+	We use `Integer.MAX_VALUE` in Integer class to figure out the the length of the String with the minimum length.
 ```
 public static String longestCommonPrefix(String[] strs) {  
 	if (strs == null || strs.length == 0) return "";  
@@ -354,3 +354,30 @@ An input string is valid if:
 
 - `1 <= s.length <= 104`
 - `s` consists of parentheses only `'()[]{}'`.
+
+## Solution
+
+- We use a `Stack`.
+Whenever the character at the index while iterating is a `'(', '{' or a '['` we push it into the stack. 
+While checking the top element we pop from the stack when the character is `')', '}' or ']'`.
+Be sure to check the emptiness of the array throughout.
+```
+public static boolean isValid(String s) {  
+	Stack<Character> stack = new Stack<>();  
+	for (int i = 0; i < s.length(); i++) {  
+		if (s.charAt(i) == '(' || s.charAt(i) == '[' || s.charAt(i) == '{') {  
+			stack.push(s.charAt(i));  
+		} else {  
+			if (stack.isEmpty()) {  
+				return false;  
+			}  
+		if ((s.charAt(i) == ')' && stack.peek() == '(') || (s.charAt(i) == ']' && stack.peek() == '[') || (s.charAt(i) == '}' && stack.peek() == '{')) {  
+			stack.pop();  
+			} else {  
+				return false;  
+			}  
+		}  
+	}  
+	return stack.isEmpty();  
+}
+```
