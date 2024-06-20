@@ -22,6 +22,7 @@ You can return the answer in any order.
 **Input:** nums = [3,3], target = 6
 **Output:** [0,1]
 ## Solution
+
 - Brute Force (Time Complexity O(n<sup>2</sup>)) - each for loop is n
 
 ```
@@ -82,6 +83,7 @@ Given an integer `x`, return `true` _if_ `x` _is a_ _**palindrome**__, and
 **Output:** false
 **Explanation:** Reads 01 from right to left. Therefore it is not a palindrome.
 ## Solution
+
 - By converting it into a `String` 
 
 ```
@@ -99,21 +101,56 @@ public static boolean isPalindrome(int x) {
 }
 ```
 
-- Without converting it to a String
+- Without converting it to a (String Time Complexity O(Log10(N))
 
-we only need to check half of 
+Without converting the number to a string, we first take care of the cases where `x` is 0, `x` is a multiple of 10, and `x` is a negative number. Then we reverse half of the number and compare it with the remaining half.
 
-```public static boolean(int x){
-	if(x<0 || (x%10 = 0 && x!=0)){
+### First Iteration:
+
+- **Before iteration:**
+    - `x = 121`
+    - `reversed = 0`
+- **Calculation:**
+    - `x % 10` gives `1`.
+    - `reversed = reversed * 10 + x % 10` becomes `reversed = 0 * 10 + 1 = 1`.
+    - `x /= 10` removes the last digit of `x`, resulting in `x = 121 / 10 = 12`.
+- **After iteration:**
+    - `reversed = 1`
+    - `x = 12`
+
+### Second Iteration:
+
+- **Before iteration:**
+    - `x = 12`
+    - `reversed = 1`
+- **Calculation:**
+    - `x % 10` gives `2`.
+    - `reversed = reversed * 10 + x % 10` becomes `reversed = 1 * 10 + 2 = 12`.
+    - `x /= 10` removes the last digit of `x`, resulting in `x = 12 / 10 = 1`.
+- **After iteration:**
+    - `reversed = 12`
+    - `x = 1`
+
+The loop exits because `x` (1) is no longer greater than `reversed` (12).
+
+### Comparison:
+
+Now we compare the two numbers.
+
+- **Even-length number**: `x == reversed`
+- **Odd-length number**: `x == reversed / 10` (removes the middle digit, in this case, 2).
+
+```
+public static boolean isPalindrome(int x) {  
+	if (x < 0 || (x % 10 == 0 && x != 0)) {  
 	return false;
-	}
-	
-	int reversed = 0;
-	
-	while(x > reversed){
-		
-	}
-	
+	}  
+	int reversed = 0;  
+	while (x > reversed) {  
+		reversed = reversed * 10 + x % 10;  
+		x = x / 10;  
+	}  
+	return x == reversed || x == reversed / 10;  
 }
 ```
 
