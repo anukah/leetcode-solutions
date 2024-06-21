@@ -381,7 +381,6 @@ public static boolean isValid(String s) {
 	return stack.isEmpty();  
 }
 ```
-<<<<<<< HEAD
 
 ## 21. Merge Two Sorted Lists
 
