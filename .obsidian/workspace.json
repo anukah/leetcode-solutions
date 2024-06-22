@@ -149,6 +149,8 @@
   },
   "active": "4aaad5c98255cb0d",
   "lastOpenFiles": [
+    "src/IndexOfTheFirstOccurrence/Main.java",
+    "src/IndexOfTheFirstOccurrence",
     "out/production/LeetCode/IndexOfTheFirstOccurance/Main.class",
     "out/production/LeetCode/IndexOfTheFirstOccurance",
     "out/production/LeetCode/RemoveElement/Main.class",
@@ -158,8 +160,6 @@
     "out/production/LeetCode/RemoveDuplicatesFromSortedArray/Main.class",
     "out/production/LeetCode/RemoveDuplicatesFromSortedArray",
     "src/RemoveElement/Main.java",
-    "src/RemoveElement",
-    "src/RemoveDuplicatesFromSortedArray/Main.java",
     "conflict-files-obsidian-git.md",
     "README.md"
   ]

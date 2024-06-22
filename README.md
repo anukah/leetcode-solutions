@@ -637,7 +637,7 @@ public static int strStr(String haystack, String needle) {
 }
 ```
 
-The funny thing is Java has a inbuilt method which would do exactly what we expect,  so our code would simply be,
+The funny thing is Java has a inbuilt method which would do exactly what we need,  so our code would simply be,
 
 ```
 public static int strStr(String haystack, String needle) {  
