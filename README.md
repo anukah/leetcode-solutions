@@ -523,14 +523,14 @@ we need to return the number of unique elements too.
 
 ```
 public static int removeDuplicates(int[] nums) {  
-int k = 0;  
-for (int i = 0; i < nums.length; i++) {  
-if (i == nums.length - 1 || nums[i] != nums[i + 1]) {  
-nums[k] = nums[i];  
-k++;  
-}  
-}  
-return k;  
+	int k = 0;  
+	for (int i = 0; i < nums.length; i++) {  
+		if (i == nums.length - 1 || nums[i] != nums[i + 1]) {  
+			nums[k] = nums[i];  
+			k++;  
+		}  
+	}  
+	return k;  
 }
 ```
 
@@ -588,14 +588,59 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 We have to take in a `int[] nums` and reassign it within our method to an array where the given value `val` is removed.
 ```
 public static int removeElement(int[] nums, int val) {  
-int j = 0;  
-for (int i = 0; i < nums.length; i++) {  
-if (nums[i] != val){  
-nums[j] = nums[i];  
-j++;  
-}  
-}  
-return j;  
+	int j = 0;  
+	for (int i = 0; i < nums.length; i++) {  
+		if (nums[i] != val){  
+			nums[j] = nums[i];  
+			j++;  
+		}  
+	}  
+	return j;  
 }
 ```
 
+## 28. Find The Index Of The First Occurrence In A String
+
+Given two strings `needle` and `haystack`, return the index of the first occurrence of `needle` in `haystack`, or `-1` if `needle` is not part of `haystack`.
+
+**Example 1:**
+
+**Input:** haystack = "sadbutsad", needle = "sad"
+**Output:** 0
+**Explanation:** "sad" occurs at index 0 and 6.
+The first occurrence is at index 0, so we return 0.
+
+**Example 2:**
+
+**Input:** haystack = "leetcode", needle = "leeto"
+**Output:** -1
+**Explanation:** "leeto" did not occur in "leetcode", so we return -1.
+
+**Constraints:**
+
+- `1 <= haystack.length, needle.length <= 104`
+- `haystack` and `needle` consist of only lowercase English characters.
+## Solution
+
+Here we can make a substring of the length of `needle` and iterate thru indices of `haystack` to compare each newly made substring to `needle` itself and if so we can return the starting index `i`.
+```
+public static int strStr(String haystack, String needle) {  
+	int haystackLength = haystack.length();  
+	int needleLength = needle.length();  
+  
+	for (int i = 0; i <= haystackLength - needleLength; i++) {  
+		if (haystack.substring(i, i + needleLength).equals(needle)) {  
+			return i;  
+		}  
+	}  
+	return -1;  
+}
+```
+
+The funny thing is Java has a inbuilt method which would do exactly what we expect,  so our code would simply be,
+
+```
+public static int strStr(String haystack, String needle) {  
+	return haystack.indexOf(needle);  
+}
+```
