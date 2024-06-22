@@ -1,4 +1,4 @@
-**Welcome to my collection of LeetCode problem solutions! Here, I've tackled problems ranging from easy to hard difficulty levels. These solutions represent my own attempts, and while I've strived for accuracy, there may be mistakes or opportunities for optimisation.**
+**This is my collection of LeetCode problem solutions! Here, I've tackled problems ranging from easy to hard difficulty levels. These solutions represent my own attempts, and while I've strived for accuracy, there may be mistakes or opportunities for optimisation.**
 
 **I appreciate any feedback or suggestions for improving these solutions. You can contribute by forking this repository and submitting pull requests. Thank you for taking the time to review my work!**
 
@@ -516,7 +516,7 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 - `nums` is sorted in **non-decreasing** order.
 ## Solution
 
-Again the context of the question is a bit confusing but once you understand it, the implementation is very easy.
+The context of the question is a bit confusing but once you understand it, the implementation is quiet easy.
 We have to take in a `int[] nums` and reassign it within our method to an array of only the unique values in the original array. 
 What occurs after the expected output does not matter.
 we need to return the number of unique elements too.
@@ -531,6 +531,71 @@ k++;
 }  
 }  
 return k;  
+}
+```
+
+## 27. Remove Element
+
+Given an integer array `nums` and an integer `val`, remove all occurrences of `val` in `nums` [**in-place**](https://en.wikipedia.org/wiki/In-place_algorithm). The order of the elements may be changed. Then return _the number of elements in_ `nums` _which are not equal to_ `val`.
+
+Consider the number of elements in `nums` which are not equal to `val` be `k`, to get accepted, you need to do the following things:
+
+- Change the array `nums` such that the first `k` elements of `nums` contain the elements which are not equal to `val`. The remaining elements of `nums` are not important as well as the size of `nums`.
+- Return `k`.
+
+**Custom Judge:**
+
+The judge will test your solution with the following code:
+
+int[] nums = [...]; // Input array
+int val = ...; // Value to remove
+int[] expectedNums = [...]; // The expected answer with correct length.
+                            // It is sorted with no values equaling val.
+
+int k = removeElement(nums, val); // Calls your implementation
+
+assert k == expectedNums.length;
+sort(nums, 0, k); // Sort the first k elements of nums
+for (int i = 0; i < actualLength; i++) {
+    assert nums[i] == expectedNums[i];
+}
+
+If all assertions pass, then your solution will be **accepted**.
+
+**Example 1:**
+
+**Input:** nums = [3,2,2,3], val = 3
+**Output:** 2, nums = [2,2,_,_]
+**Explanation:** Your function should return k = 2, with the first two elements of nums being 2.
+It does not matter what you leave beyond the returned k (hence they are underscores).
+
+**Example 2:**
+
+**Input:** nums = [0,1,2,2,3,0,4,2], val = 2
+**Output:** 5, nums = [0,1,4,0,3,_,_,_]
+**Explanation:** Your function should return k = 5, with the first five elements of nums containing 0, 0, 1, 3, and 4.
+Note that the five elements can be returned in any order.
+It does not matter what you leave beyond the returned k (hence they are underscores).
+
+**Constraints:**
+
+- `0 <= nums.length <= 100`
+- `0 <= nums[i] <= 50`
+- `0 <= val <= 100`
+
+## Solution
+
+We have to take in a `int[] nums` and reassign it within our method to an array where the given value `val` is removed.
+```
+public static int removeElement(int[] nums, int val) {  
+int j = 0;  
+for (int i = 0; i < nums.length; i++) {  
+if (nums[i] != val){  
+nums[j] = nums[i];  
+j++;  
+}  
+}  
+return j;  
 }
 ```
 
