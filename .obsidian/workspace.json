@@ -149,7 +149,10 @@
   },
   "active": "4aaad5c98255cb0d",
   "lastOpenFiles": [
-<<<<<<< HEAD
+    "out/production/LeetCode/RemoveDuplicatesFromSortedArray/Main.class",
+    "out/production/LeetCode/RemoveDuplicatesFromSortedArray",
+    "src/RemoveDuplicatesFromSortedArray/Main.java",
+    "src/RemoveDuplicatesFromSortedArray",
     "out/production/LeetCode/MergeTwoSortedLists/Main.class",
     "out/production/LeetCode/MergeTwoSortedLists/Main$ListNode.class",
     "out/production/LeetCode/MergeTwoSortedLists",
@@ -157,22 +160,6 @@
     "out/production/LeetCode/ValidParentheses",
     "src/MergeTwoSortedLists/Main.java",
     "src/MergeTwoSortedLists",
-=======
-    "out/production/LeetCode/ValidParentheses/Main.class",
-    "out/production/LeetCode/ValidParentheses",
->>>>>>> origin/master
-    "src/ValidParentheses/Main.java",
-    "src/ValidParentheses",
-    "out/production/LeetCode/LongestCommonPrefix/Main.class",
-    "out/production/LeetCode/LongestCommonPrefix",
-<<<<<<< HEAD
-=======
-    "src/LongestCommonPrefix/Main.java~",
-    "out/production/LeetCode/RomantoInteger/Main.class",
-    "out/production/LeetCode/RomantoInteger",
-    "src/LongestCommonPrefix/Main.java",
-    "src/LongestCommonPrefix",
->>>>>>> origin/master
     "conflict-files-obsidian-git.md",
     "README.md"
   ]

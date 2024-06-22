@@ -1,3 +1,7 @@
+**Welcome to my collection of LeetCode problem solutions! Here, I've tackled problems ranging from easy to hard difficulty levels. These solutions represent my own attempts, and while I've strived for accuracy, there may be mistakes or opportunities for optimisation.**
+
+**I appreciate any feedback or suggestions for improving these solutions. You can contribute by forking this repository and submitting pull requests. Thank you for taking the time to review my work!**
+
 ## 1. Two Sum
 
 Given an array of integers `nums` and an integer `target`, return _indices of the two numbers such that they add up to `target`_.
@@ -412,10 +416,10 @@ Return _the head of the merged linked list_.
 - The number of nodes in both lists is in the range `[0, 50]`.
 - `-100 <= Node.val <= 100`
 - Both `list1` and `list2` are sorted in **non-decreasing** order.
-
 ## Solution
 
-A bit confusing when looking at it first but looking at my main method would help to understand it more clearly.
+A bit confusing when looking at it first but looking at this main method would help to understand it more clearly.
+observe the instan
 
 ```
 public static void main(String[] args) {  
@@ -463,6 +467,70 @@ public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
 		list2 = list2.next;  
 	}  
 	return temp.next;  
+}
+```
+
+## 26. Remove Duplicates from Sorted Array
+
+Given an integer array `nums` sorted in **non-decreasing order**, remove the duplicates [**in-place**](https://en.wikipedia.org/wiki/In-place_algorithm) such that each unique element appears only **once**. The **relative order** of the elements should be kept the **same**. Then return _the number of unique elements in_ `nums`.
+
+Consider the number of unique elements of `nums` to be `k`, to get accepted, you need to do the following things:
+
+- Change the array `nums` such that the first `k` elements of `nums` contain the unique elements in the order they were present in `nums` initially. The remaining elements of `nums` are not important as well as the size of `nums`.
+- Return `k`.
+
+**Custom Judge:**
+
+The judge will test your solution with the following code:
+
+int[] nums = [...]; // Input array
+int[] expectedNums = [...]; // The expected answer with correct length
+
+int k = removeDuplicates(nums); // Calls your implementation
+
+assert k == expectedNums.length;
+for (int i = 0; i < k; i++) {
+    assert nums[i] == expectedNums[i];
+}
+
+If all assertions pass, then your solution will be **accepted**.
+
+**Example 1:**
+
+**Input:** nums = [1,1,2]
+**Output:** 2, nums = [1,2,_]
+**Explanation:** Your function should return k = 2, with the first two elements of nums being 1 and 2 respectively.
+It does not matter what you leave beyond the returned k (hence they are underscores).
+
+**Example 2:**
+
+**Input:** nums = [0,0,1,1,1,2,2,3,3,4]
+**Output:** 5, nums = [0,1,2,3,4,_,_,_,_,_]
+**Explanation:** Your function should return k = 5, with the first five elements of nums being 0, 1, 2, 3, and 4 respectively.
+It does not matter what you leave beyond the returned k (hence they are underscores).
+
+**Constraints:**
+
+- `1 <= nums.length <= 3 * 104`
+- `-100 <= nums[i] <= 100`
+- `nums` is sorted in **non-decreasing** order.
+## Solution
+
+Again the context of the question is a bit confusing but once you understand it, the implementation is very easy.
+We have to take in a `int[] nums` and reassign it within our method to an array of only the unique values in the original array. 
+What occurs after the expected output does not matter.
+we need to return the number of unique elements too.
+
+```
+public static int removeDuplicates(int[] nums) {  
+int k = 0;  
+for (int i = 0; i < nums.length; i++) {  
+if (i == nums.length - 1 || nums[i] != nums[i + 1]) {  
+nums[k] = nums[i];  
+k++;  
+}  
+}  
+return k;  
 }
 ```
 
