@@ -1,4 +1,4 @@
-package IndexOfTheFirstOccurance;
+package IndexOfTheFirstOccurrence;
 
 public class Main {
     public static void main(String[] args) {
