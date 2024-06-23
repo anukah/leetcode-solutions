@@ -7,21 +7,18 @@ public class Main {
     public static String addBinary(String a, String b) {
         int i = a.length()-1;
         int j = b.length()-1;
-        StringBuilder ret = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
+        int carry = 0;
         while(i>=0 || j>=0){
-            ret.insert(ret.length(),add(a.charAt(i),b.charAt(j)));
+            int sum = carry;
+            if(i >= 0) sum += a.charAt(i) - '0';
+            if(j >= 0) sum += b.charAt(i) - '0';
+            sb.append(sum%2);
+            carry = sum/2;
             i--;
             j--;
         }
-        return ret.reverse().toString();
-    }
-    private static String add(char a, char b){
-        if ((a == '0' && b == '1') || (a == '1' && b == '0')){
-            return "1";
-        } else if (a == '0' && b == '0') {
-            return "0";
-        } else {
-            return "01";
-        }
+        if (carry!=0) sb.append(carry);
+        return sb.reverse().toString();
     }
 }

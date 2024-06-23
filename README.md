@@ -825,8 +825,130 @@ Given two binary strings `a` and `b`, return _their sum as a binary string_.
 
 ## Solution
 
+Personally this was a very hard question.
+We iterate through each of the input `String`s from the end in a while loop, which stops when both strings are fully traversed. We use a `StringBuilder` to construct the result and a `carry` variable to handle any overflow during addition. Inside the loop, we sum the current digits of `a` and `b` (if available) with the carry, then append the least significant bit of the sum (`sum % 2`) to the `StringBuilder` and update the carry (`sum / 2`). We decrement the indices `i` and `j` after processing. After the loop, if there's any remaining carry, we append it to the `StringBuilder`. Finally, we reverse the `StringBuilder` to obtain the correct binary result and return it as a string.
+ ```
+public static String addBinary(String a, String b) {  
+	int i = a.length()-1;  
+	int j = b.length()-1;  
+	StringBuilder sb = new StringBuilder();  
+	int carry = 0;  
+	while(i>=0 || j>=0){  
+		int sum = carry;  
+		if(i >= 0) sum += a.charAt(i) - '0';  
+		if(j >= 0) sum += b.charAt(i) - '0';  
+		sb.append(sum%2);  
+		carry = sum/2;  
+		i--;  
+		j--;  
+	}  
+	if (carry!=0) sb.append(carry);  
+	return sb.reverse().toString();  
+}
+```
 
+## 69. Sqrt(x)
 
+Given a non-negative integer `x`, return _the square root of_ `x` _rounded down to the nearest integer_. The returned integer should be **non-negative** as well.
+
+You **must not use** any built-in exponent function or operator.
+
+- For example, do not use `pow(x, 0.5)` in c++ or `x ** 0.5` in python.
+
+**Example 1:**
+
+**Input:** x = 4
+**Output:** 2
+**Explanation:** The square root of 4 is 2, so we return 2.
+
+**Example 2:**
+
+**Input:** x = 8
+**Output:** 2
+**Explanation:** The square root of 8 is 2.82842..., and since we round it down to the nearest integer, 2 is returned.
+
+**Constraints:**
+
+- `0 <= x <= 231 - 1`
+
+## Solution
+
+We are instructed not to use any in-built function so we approach this using Binary Search. We can look at this using an 2 examples.
+
+- When x = 16
+`start` = 1 and `end` = 16
+
+**First iteration** 
+`mid` = 1 + (16 - 1) / 2 = 1 + 7 = 8 
+`mid` is > 16 / 8 (2) 
+`end` = 8 - 1 = 7
+
+`start` = 1 and `end` = 7
+
+**Second iteration** (hence 1 <= 7) 
+`mid` = 1 + (7 - 1) / 2 = 1 + 3 = 4 
+`mid` is <= 16 / 4 (4) 
+
+`start` = 5 `res` = 4
+
+`res` = 4 is returned
+
+- When x = 20
+
+`start` = 1 and `end` = 20
+
+**First iteration** 
+`mid` = 1 + (20 - 1) / 2 = 1 + 9 = 10
+`mid` is > 20 / 10 (2) 
+`end` = 10 - 1 = 9
+
+`start` = 1 and `end` = 9
+
+**Second iteration** (hence 1 <= 9) 
+`mid` = 1 + (9 - 1) / 2 = 1 + 4 = 5 
+`mid` is > 20 / 5 (4)
+`end` = 5 - 1 = 4
+
+`start` = 1 and `end` = 4
+
+**Third iteration** (hence 1 <= 4) 
+`mid` = 1 + (4 - 1) / 2 = 1 + 1 = 2
+`mid` is <= 20 / 2 (10) 
+`start` = 3 `res` = 2
+
+`start` = 3 and `end` = 4
+
+**Fourth iteration** (hence 3 <= 4) 
+`mid` = 3 + (4 - 3) / 2 = 3 + 0 = 3
+`mid` is <= 20 / 3 (6.67) 
+`start` = 4 `res` = 3
+
+`start` = 4 and `end` = 4
+
+**Fifth iteration** (hence 4 <= 4) 
+`mid` = 4 + (4 - 4) / 2 = 4 + 0 = 4 
+`mid` is <= 20 / 4 (5) 
+`start` = 5 `res` = 4
+
+`res` = 4 is returned
+
+```
+public static int mySqrt(int x) {  
+	int start = 1;  
+	int end = x;  
+	int res = 0;  
+	while (start<=end){  
+		int mid = start + (end - start)/2;  
+		if (mid<=x/mid){  
+			start = mid + 1; 
+			res = mid;  
+		} else {  
+			end = mid-1;  
+		}  
+	}  
+	return res;  
+}
+```
 ## 3194. Minimum Average Of Smallest And Largest Elements
 
 You have an array of floating point numbers `averages` which is initially empty. You are given an array `nums` of `n` integers where `n` is even.
