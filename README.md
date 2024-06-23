@@ -785,8 +785,8 @@ Thus, the result should be [1,0].
 ## Solution
 A bit confusing at first.
 while iterating from the least significant value, we check whether it is a 9 or not and act accordingly. 
-A special case comes when the value at the last iteration is a 9.
-Then we have to declare a new `int[]` of length +1 and set index `0` to 1.
+A special case comes when the values os all the digits are 9.
+Then we have to declare a new `int[]` of length +1 and set index `0` to 1 and return that.
 ```
 public static int[] plusOne(int[] digits) {  
 	int n = digits.length;  
@@ -802,3 +802,118 @@ public static int[] plusOne(int[] digits) {
 	return newDigits;  
 }
 ```
+
+## 67. Add Binary
+
+Given two binary strings `a` and `b`, return _their sum as a binary string_.
+
+**Example 1:**
+
+**Input:** a = "11", b = "1"
+**Output:** "100"
+
+**Example 2:**
+
+**Input:** a = "1010", b = "1011"
+**Output:** "10101"
+
+**Constraints:**
+
+- `1 <= a.length, b.length <= 104`
+- `a` and `b` consist only of `'0'` or `'1'` characters.
+- Each string does not contain leading zeros except for the zero itself.
+
+## Solution
+
+
+
+## 3194. Minimum Average Of Smallest And Largest Elements
+
+You have an array of floating point numbers `averages` which is initially empty. You are given an array `nums` of `n` integers where `n` is even.
+
+You repeat the following procedure `n / 2` times:
+
+- Remove the **smallest** element, `minElement`, and the **largest** element `maxElement`, from `nums`.
+- Add `(minElement + maxElement) / 2` to `averages`.
+
+Return the **minimum** element in `averages`.
+
+**Example 1:**
+
+**Input:** nums = [7,8,3,4,15,13,4,1]
+
+**Output:** 5.5
+
+**Explanation:**
+
+|step|nums|averages|
+|---|---|---|
+|0|[7,8,3,4,15,13,4,1]|[]|
+|1|[7,8,3,4,13,4]|[8]|
+|2|[7,8,4,4]|[8,8]|
+|3|[7,4]|[8,8,6]|
+|4|[]|[8,8,6,5.5]|
+
+The smallest element of averages, 5.5, is returned.
+
+**Example 2:**
+
+**Input:** nums = [1,9,8,3,10,5]
+
+**Output:** 5.5
+
+**Explanation:**
+
+|step|nums|averages|
+|---|---|---|
+|0|[1,9,8,3,10,5]|[]|
+|1|[9,8,3,5]|[5.5]|
+|2|[8,5]|[5.5,6]|
+|3|[]|[5.5,6,6.5]|
+
+**Example 3:**
+
+**Input:** nums = [1,2,3,7,8,9]
+
+**Output:** 5.0
+
+**Explanation:**
+
+|step|nums|averages|
+|---|---|---|
+|0|[1,2,3,7,8,9]|[]|
+|1|[2,3,7,8]|[5]|
+|2|[3,7]|[5,5]|
+|3|[]|[5,5,5]|
+
+**Constraints:**
+
+- `2 <= n == nums.length <= 50`
+- `n` is even.
+- `1 <= nums[i] <= 50`
+
+## Solution
+A pretty straightforward approach we use `java.util.Arrays` to sort both the initial array and the temporary array used to store the averages of min and max.
+We should parse the value obtained as average to `double` since it might cause an error with the values.
+
+```
+public static double minimumAverage(int[] nums) {  
+	int min = 0;  
+	int max = 0;  
+	int j = 0;  
+	Arrays.sort(nums);  
+	double[] averages = new double[nums.length/2];  
+	for (int i = 0; i < nums.length; i++) {  
+		if (j == averages.length){  
+			break;  
+		}  
+		min = nums[i];  
+		max = nums[nums.length-1-i];  
+		averages[j] = (double) (min+max)/2;  
+		j++;  
+	}  
+	Arrays.sort(averages);  
+	return averages[0];  
+}
+```
+
