@@ -1017,6 +1017,48 @@ public static int climbStairs(int n) {
 ```
 This is more efficient.
 
+## 83. Remove Duplicates from Sorted List
+Given the `head` of a sorted linked list, _delete all duplicates such that each element appears only once_. Return _the linked list **sorted** as well_.
+
+**Example 1:**
+
+![](https://assets.leetcode.com/uploads/2021/01/04/list1.jpg)
+
+**Input:** head = [1,1,2]
+**Output:** [1,2]
+
+**Example 2:**
+
+![](https://assets.leetcode.com/uploads/2021/01/04/list2.jpg)
+
+**Input:** head = [1,1,2,3,3]
+**Output:** [1,2,3]
+
+**Constraints:**
+
+- The number of nodes in the list is in the range `[0, 300]`.
+- `-100 <= Node.val <= 100`
+- The list is guaranteed to be **sorted** in ascending order.
+
+## Solution
+Again a pretty straight forward answer.
+A temporary variable is used to iterate and skip over duplicate values.
+```
+public static ListNode deleteDuplicates(ListNode head) {  
+		ListNode temp = head;  
+		while(temp!=null && temp.next!=null){  
+			if (temp.val == temp.next.val){  
+			temp.next = temp.next.next;  
+		} else {  
+			temp = temp.next;  
+		}  
+	}  
+return head;  
+}
+```
+
+
+
 ## 3194. Minimum Average Of Smallest And Largest Elements
 
 You have an array of floating point numbers `averages` which is initially empty. You are given an array `nums` of `n` integers where `n` is even.
