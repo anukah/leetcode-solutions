@@ -1178,6 +1178,51 @@ public static void inOrderRec(TreeNode root, List<Integer> list) {
 }
 ```
 
+## 100. Same Tree
+Given the roots of two binary trees `p` and `q`, write a function to check if they are the same or not.
+
+Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
+
+**Example 1:**
+
+![](https://assets.leetcode.com/uploads/2020/12/20/ex1.jpg)
+
+**Input:** p = [1,2,3], q = [1,2,3]
+**Output:** true
+
+**Example 2:**
+
+![](https://assets.leetcode.com/uploads/2020/12/20/ex2.jpg)
+
+**Input:** p = [1,2], q = [1,null,2]
+**Output:** false
+
+**Example 3:**
+
+![](https://assets.leetcode.com/uploads/2020/12/20/ex3.jpg)
+
+**Input:** p = [1,2,1], q = [1,1,2]
+**Output:** false
+
+**Constraints:**
+
+- The number of nodes in both trees is in the range `[0, 100]`.
+- `-104 <= Node.val <= 104`
+
+## Solution
+We use recursion within the method to compare first the roots and then the left and right subtrees.
+```
+public static boolean isSameTree(TreeNode p, TreeNode q) {  
+	if (p == null && q == null) {  
+		return true;  
+	} else if (p == null || q == null) {  
+		return false;  
+	} else {  
+		return (p.val == q.val) && isSameTree(p.left, q.left) && isSameTree(p.right, q.right);  
+	}  
+}
+```
+
 ## 3194. Minimum Average Of Smallest And Largest Elements
 
 You have an array of floating point numbers `averages` which is initially empty. You are given an array `nums` of `n` integers where `n` is even.
