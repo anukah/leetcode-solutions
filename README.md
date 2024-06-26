@@ -1223,6 +1223,35 @@ public static boolean isSameTree(TreeNode p, TreeNode q) {
 }
 ```
 
+## 101. Symmetric Tree
+
+Given the `root` of a binary tree, _check whether it is a mirror of itself_ (i.e., symmetric around its center).
+
+**Example 1:**
+
+![](https://assets.leetcode.com/uploads/2021/02/19/symtree1.jpg)
+
+**Input:** root = [1,2,2,3,4,4,3]
+**Output:** true
+
+**Example 2:**
+
+![](https://assets.leetcode.com/uploads/2021/02/19/symtree2.jpg)
+
+**Input:** root = [1,2,2,null,3,null,3]
+**Output:** false
+
+**Constraints:**
+
+- The number of nodes in the tree is in the range `[1, 1000]`.
+- `-100 <= Node.val <= 100`
+
+## Solution
+
+
+
+
+
 ## 3194. Minimum Average Of Smallest And Largest Elements
 
 You have an array of floating point numbers `averages` which is initially empty. You are given an array `nums` of `n` integers where `n` is even.
