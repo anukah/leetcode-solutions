@@ -1247,7 +1247,22 @@ Given the `root` of a binary tree, _check whether it is a mirror of itself_ 
 - `-100 <= Node.val <= 100`
 
 ## Solution
-
+We use the `isMirror` method to find out whether the subtrees of 
+```
+public static boolean isSymmetric(TreeNode root) {  
+	if (root != null){  
+		return isMirror(root.left, root.right);  
+	}  
+	return false;  
+}  
+  
+private static boolean isMirror(TreeNode left, TreeNode right){  
+	if (left == null && right == null) return true;  
+	if (left == null || right == null) return false;  
+	if (left.val != right.val) return false;  
+		return isMirror(left.left, right.right) && isMirror(left.right, right.left);  
+	}
+```
 
 
 
