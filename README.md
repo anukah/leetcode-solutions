@@ -1264,9 +1264,120 @@ private static boolean isMirror(TreeNode left, TreeNode right){
 	}
 ```
 
+## 104. Maximum Depth of Binary Tree
+Given the `root` of a binary tree, return _its maximum depth_.
 
+A binary tree's **maximum depth** is the number of nodes along the longest path from the root node down to the farthest leaf node.
 
+**Example 1:**
 
+![](https://assets.leetcode.com/uploads/2020/11/26/tmp-tree.jpg)
+
+**Input:** root = [3,9,20,null,null,15,7]
+**Output:** 3
+
+**Example 2:**
+
+**Input:** root = [1,null,2]
+**Output:** 2
+
+**Constraints:**
+
+- The number of nodes in the tree is in the range `[0, 104]`.
+- `-100 <= Node.val <= 100`
+
+## Solution
+A pretty straight forward solution using recursion.
+
+```
+public static int maxDepth(TreeNode root) {
+	if(root==null) return 0;
+	int depthL = maxDepth(root.left);
+	int depthR = maxDepth(root.right);
+	return Math.max(depthR,depthL) + 1;
+}
+```
+
+## 108. Convert Sorted Array to Binary Search Tree
+
+Given an integer array `nums` where the elements are sorted in **ascending order**, convert _it to a_ 
+**_height-balanced_** _binary search tree_.
+
+**Example 1:**
+
+![](https://assets.leetcode.com/uploads/2021/02/18/btree1.jpg)
+
+**Input:** nums = [-10,-3,0,5,9]
+**Output:** [0,-3,9,-10,null,5]
+**Explanation:** [0,-10,5,null,-3,null,9] is also accepted:
+![](https://assets.leetcode.com/uploads/2021/02/18/btree2.jpg)
+
+**Example 2:**
+
+![](https://assets.leetcode.com/uploads/2021/02/18/btree.jpg)
+
+**Input:** nums = [1,3]
+**Output:** [3,1]
+**Explanation:** [1,null,3] and [3,1] are both height-balanced BSTs.
+
+**Constraints:**
+
+- `1 <= nums.length <= 104`
+- `-104 <= nums[i] <= 104`
+- `nums` is sorted in a **strictly increasing** order.
+## Solution
+This was my first approach.
+```
+public static TreeNode sortedArrayToBST(int[] nums) {  
+	TreeNode tree = new TreeNode(nums[nums.length/2]);  
+	for (int i = 0; i < nums.length; i++) {  
+		insert(tree, nums[i]);  
+	}  
+  
+	return tree;  
+}  
+  
+public static void insert(TreeNode tree, int data){  
+	tree = insertRec(tree,data);  
+}  
+  
+private static TreeNode insertRec(TreeNode tree, int data){  
+	if (tree == null) return new TreeNode(data);  
+	if (tree.val > data){  
+		tree.left = insertRec(tree.left, data);  
+	} else if (tree.val < data){  
+		tree.right = insertRec(tree.right, data);  
+	}  
+	return tree;  
+}
+```
+
+But with this method I ran into there following errors.
+- **Incorrect Initial Tree Construction:** The initial tree construction should not start with the middle element and then insert all elements. This will not guarantee a balanced tree.
+- **Inefficient Tree Insertion:** Inserting elements one by one into the tree from a sorted array does not ensure a balanced tree.
+
+Similar to earlier, we take the middle term of the array and create a new tree from that middle term.
+Then we add the elements on the left side of the middle term to the left sub tree and elements on the right side of the middle term to the right sub tree.
+
+```
+public static TreeNode sortedArrayToBST(int[] nums) {  
+	if (nums == null || nums.length == 0) {  
+	return null;  
+	}  
+	return sortedArrayToBST(nums, 0, nums.length - 1);  
+}  
+  
+private static TreeNode sortedArrayToBST(int[] nums, int left, int right) {  
+	if (left > right) {  
+	return null;  
+	}  
+	int mid = left + (right - left) / 2;  
+	TreeNode node = new TreeNode(nums[mid]);  
+	node.left = sortedArrayToBST(nums, left, mid - 1);  
+	node.right = sortedArrayToBST(nums, mid + 1, right);  
+	return node;  
+}
+```
 ## 3194. Minimum Average Of Smallest And Largest Elements
 
 You have an array of floating point numbers `averages` which is initially empty. You are given an array `nums` of `n` integers where `n` is even.
