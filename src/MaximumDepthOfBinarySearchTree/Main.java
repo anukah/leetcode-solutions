@@ -1,6 +1,5 @@
 package MaximumDepthOfBinarySearchTree;
 
-import com.sun.source.tree.Tree;
 
 public class Main {
     public static class TreeNode {
