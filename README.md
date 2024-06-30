@@ -1412,7 +1412,27 @@ Given a binary tree, determine if it is 
 - `-104 <= Node.val <= 104`
 
 ## Solution
+We take the heights of the left and right subtrees of the root.
+then we look at the difference of the heights there.
 
+```
+public static boolean isBalanced(TreeNode root) {  
+	if (root == null || (root.left == null && root.right == null)) return true;  
+	int leftHeight = iterateTree(root.left);  
+	int rightHeight = iterateTree(root.right);  
+	int difference = Math.abs(leftHeight - rightHeight);  
+	return difference <= 1 && isBalanced(root.left) && isBalanced(root.right);  
+}  
+  
+public static int iterateTree(TreeNode root) {  
+	if (root == null) {  
+		return 0;  
+	}  
+	int heightRight = iterateTree(root.right);  
+	int heightLeft = iterateTree(root.left);  
+	return Math.max(heightLeft, heightRight) + 1;  
+}
+```
 
 
 ## 3194. Minimum Average Of Smallest And Largest Elements
