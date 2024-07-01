@@ -1434,7 +1434,42 @@ public static int iterateTree(TreeNode root) {
 }
 ```
 
+## 101. Minimum Depth Of Binary Tree
+Given a binary tree, find its minimum depth.
 
+The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
+
+**Note:** A leaf is a node with no children.
+
+**Example 1:**
+
+![](https://assets.leetcode.com/uploads/2020/10/12/ex_depth.jpg)
+
+**Input:** root = [3,9,20,null,null,15,7]
+**Output:** 2
+
+**Example 2:**
+
+**Input:** root = [2,null,3,null,4,null,5,null,6]
+**Output:** 5
+
+**Constraints:**
+
+- The number of nodes in the tree is in the range `[0, 105]`.
+- `-1000 <= Node.val <= 1000`
+
+## Solution
+A similar method to finding max depth but additional base cases were to be considered.
+```
+public static int minDepth(TreeNode root) {  
+	if (root == null) return 0;  
+	if (root.left == null) return minDepth(root.right) + 1;  
+	if (root.right == null) return minDepth(root.left) + 1;  
+	int depthL = minDepth(root.left);  
+	int depthR = minDepth(root.right);  
+	return Math.min(depthL, depthR) + 1;  
+}
+```
 ## 3194. Minimum Average Of Smallest And Largest Elements
 
 You have an array of floating point numbers `averages` which is initially empty. You are given an array `nums` of `n` integers where `n` is even.
