@@ -1434,7 +1434,7 @@ public static int iterateTree(TreeNode root) {
 }
 ```
 
-## 101. Minimum Depth Of Binary Tree
+## 111. Minimum Depth Of Binary Tree
 Given a binary tree, find its minimum depth.
 
 The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
@@ -1470,6 +1470,11 @@ public static int minDepth(TreeNode root) {
 	return Math.min(depthL, depthR) + 1;  
 }
 ```
+
+## 118. Pascal's Triangle 
+## 119.  Pascal's Triangle II
+
+
 ## 3194. Minimum Average Of Smallest And Largest Elements
 
 You have an array of floating point numbers `averages` which is initially empty. You are given an array `nums` of `n` integers where `n` is even.
