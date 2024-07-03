@@ -149,6 +149,8 @@
   },
   "active": "c86fa721f10ce2ba",
   "lastOpenFiles": [
+    "src/PascalsTraingle2/Main.java",
+    "src/PascalsTraingle2",
     "src/MinimumDepthOfBinaryTree/Main.java",
     "src/MinimumDepthOfBinaryTree",
     "out/production/LeetCode/ConvertSortedArraytoBST/Main.class",
@@ -158,8 +160,6 @@
     "out/production/LeetCode/ValidParentheses",
     "out/production/LeetCode/BinaryAdd/Main.class",
     "out/production/LeetCode/BinaryAdd",
-    "out/production/LeetCode/PlusOne/Main.class",
-    "out/production/LeetCode/PlusOne",
     "README.md",
     "conflict-files-obsidian-git.md"
   ]
