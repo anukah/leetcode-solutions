@@ -1599,10 +1599,31 @@ In **Pascal's triangle**, each number is the sum of the two numbers directly ab
 
 ## Solution
 
-Similar to the **118. Pascal's Triangle** question.
+Similar to the **118. Pascal's Triangle** question but here we are to return the `rowIndex`'th row.
+Here too we need 2 loops.
+- The outer loop to build each row of the Pascal's Triangle from 1 to `rowIndex`
+- The inner to compute the middle elements of the current row.
+Adding 1 in the ends are done before the loops.
 
-
-
+```
+public static List<Integer> getRow(int rowIndex) {  
+	List<Integer> ret = new ArrayList<>();  
+	ret.add(1);  
+  
+	for (int i = 1; i <= rowIndex; i++) {  
+		List<Integer> current = new ArrayList<>();  
+		current.add(1);  
+  
+		for (int j = 1; j < ret.size(); j++) {  
+			current.add(ret.get(i-1) + ret.get(i));  
+		}  
+  
+		current.add(1);  
+		ret = current;  
+	}  
+	return ret;  
+}
+```
 
 ## 3194. Minimum Average Of Smallest And Largest Elements
 
