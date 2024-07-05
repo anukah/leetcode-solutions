@@ -1470,9 +1470,138 @@ public static int minDepth(TreeNode root) {
 	return Math.min(depthL, depthR) + 1;  
 }
 ```
+## 112. Path Sum
+
+Given the `root` of a binary tree and an integer `targetSum`, return `true` if the tree has a **root-to-leaf** path such that adding up all the values along the path equals `targetSum`.
+
+A **leaf** is a node with no children.
+
+**Example 1:**
+
+![](https://assets.leetcode.com/uploads/2021/01/18/pathsum1.jpg)
+
+**Input:** root = [5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22
+**Output:** true
+**Explanation:** The root-to-leaf path with the target sum is shown.
+
+**Example 2:**
+
+![](https://assets.leetcode.com/uploads/2021/01/18/pathsum2.jpg)
+
+**Input:** root = [1,2,3], targetSum = 5
+**Output:** false
+**Explanation:** There two root-to-leaf paths in the tree:
+(1 --> 2): The sum is 3.
+(1 --> 3): The sum is 4.
+There is no root-to-leaf path with sum = 5.
+
+**Example 3:**
+
+**Input:** root = [], targetSum = 0
+**Output:** false
+**Explanation:** Since the tree is empty, there are no root-to-leaf paths.
+
+**Constraints:**
+
+- The number of nodes in the tree is in the range `[0, 5000]`.
+- `-1000 <= Node.val <= 1000`
+- `-1000 <= targetSum <= 1000`
+## Solution
+
+Here too we use recursion.
+We subtract the `root.val` from `targetSum` while traversing the tree and check whether `targetSum == 0` while `root.left` and `root.right` is `null`
+```
+public static boolean hasPathSum(TreeNode root, int targetSum) {
+	if (root == null) return false;
+	targetSum -= root.val;
+	if (root.left == null && root.right == null) return targetSum == 0;
+	return hasPathSum(root.left,targetSum) || hasPathSum(root.right, targetSum);
+}
+```
 
 ## 118. Pascal's Triangle 
+
+Given an integer `numRows`, return the first numRows of **Pascal's triangle**.
+
+In **Pascal's triangle**, each number is the sum of the two numbers directly above it as shown:
+
+![](https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif)
+
+**Example 1:**
+
+**Input:** numRows = 5
+**Output:** [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
+
+**Example 2:**
+
+**Input:** numRows = 1
+**Output:** [[1]]
+
+**Constraints:**
+
+- `1 <= numRows <= 30`
+## Solution
+
+Here we should return a list of lists which include `numRows` number of rows of the pascal's triangle.
+We need 2 loops.
+- The outer loop to add each row into the list to be returned 
+- The inner to make the lists to be added to the list of lists.
+Adding 1 in the ends are done before the loops.
+
+```
+public static List<List<Integer>> generate(int numRows) {  
+	List<List<Integer>> ret = new ArrayList<>();  
+	if (numRows == 0) return ret;  
+	List<Integer> first = new ArrayList<>();  
+	first.add(1);  
+	ret.add(first);  
+  
+	for (int i = 1; i < numRows; i++) {  
+		List<Integer> prev = ret.get(i-1);  
+		List<Integer> current = new ArrayList<>();  
+		current.add(1);  
+		for (int j = 1; j < i; j++) {  
+			current.add(prev.get(j-1)+prev.get(j));  
+		}  
+		current.add(1);  
+		ret.add(current);  
+	}  
+	return ret;  
+}
+```
+
 ## 119.  Pascal's Triangle II
+
+Given an integer `rowIndex`, return the `rowIndexth` (**0-indexed**) row of the **Pascal's triangle**.
+
+In **Pascal's triangle**, each number is the sum of the two numbers directly above it as shown:
+
+![](https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif)
+
+**Example 1:**
+
+**Input:** rowIndex = 3
+**Output:** [1,3,3,1]
+
+**Example 2:**
+
+**Input:** rowIndex = 0
+**Output:** [1]
+
+**Example 3:**
+
+**Input:** rowIndex = 1
+**Output:** [1,1]
+
+**Constraints:**
+
+- `0 <= rowIndex <= 33`
+
+## Solution
+
+Similar to the **118. Pascal's Triangle** question.
+
+
 
 
 ## 3194. Minimum Average Of Smallest And Largest Elements

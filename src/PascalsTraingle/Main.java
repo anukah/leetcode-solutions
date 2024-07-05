@@ -10,9 +10,7 @@ public class Main {
 
     public static List<List<Integer>> generate(int numRows) {
         List<List<Integer>> ret = new ArrayList<>();
-
         if (numRows == 0) return ret;
-
         List<Integer> first = new ArrayList<>();
         first.add(1);
         ret.add(first);
