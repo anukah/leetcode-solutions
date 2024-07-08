@@ -1625,6 +1625,68 @@ public static List<Integer> getRow(int rowIndex) {
 }
 ```
 
+## 121. Best Time to Buy and Sell Stock
+
+You are given an array `prices` where `prices[i]` is the price of a given stock on the `ith` day.
+
+You want to maximize your profit by choosing a **single day** to buy one stock and choosing a **different day in the future** to sell that stock.
+
+Return _the maximum profit you can achieve from this transaction_. If you cannot achieve any profit, return `0`.
+
+**Example 1:**
+
+**Input:** prices = [7,1,5,3,6,4]
+**Output:** 5
+**Explanation:** Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+
+**Example 2:**
+
+**Input:** prices = [7,6,4,3,1]
+**Output:** 0
+**Explanation:** In this case, no transactions are done and the max profit = 0.
+
+**Constraints:**
+
+- `1 <= prices.length <= 105`
+- `0 <= prices[i] <= 104`
+
+## Solution
+
+First I used the iterative method where a `List<Integer>` was instantiated and all the profits and losses were added to this List, the negative values were removed and the last index of the sorted List was returned.
+
+```
+public static int maxProfit(int[] prices) {  
+	List<Integer> list = new ArrayList<>();  
+	for (int i = 0; i < prices.length; i++) {  
+		for (int j = i+1; j < prices.length; j++) {  
+			list.add(prices[j] - prices[i]);  
+		}  
+	}  
+	Collections.sort(list);  
+	list.removeIf(num -> num <= 0);  
+	return list.isEmpty() ? 0 : list.get(list.size() - 1);  
+}
+```
+
+This resulted in a **`Memory Limit Exceeded`** error because of O(n<sup>2</sup>) complexity.
+Therefore we use a variable reassigning method where we have 2 variables where the first is `Integer.MAX_VALUE` and the next is `maxProfit`.
+
+```
+public static int maxProfit(int[] prices) {  
+	int minVal = Integer.MAX_VALUE;  
+	int maxProfit = 0;  
+	for (int i = 0; i < prices.length; i++) {  
+		if (prices[i] < minVal){  
+			minVal = prices[i];  
+		} else if ((prices[i] - minVal)>maxProfit) {  
+			maxProfit = (prices[i] - minVal);  
+		}  
+	}  
+	return maxProfit;  
+}
+```
+
 ## 3194. Minimum Average Of Smallest And Largest Elements
 
 You have an array of floating point numbers `averages` which is initially empty. You are given an array `nums` of `n` integers where `n` is even.
